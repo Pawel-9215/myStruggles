@@ -4,16 +4,18 @@ import curses as c
 screen = c.initscr()
 
 win = c.newwin(20, 50, 1, 1)
+screen.nodelay(True)
 
 c.noecho()
 c.cbreak()
 screen.keypad(True)
 while True:
+        
         win.clear()
         char = screen.getch() #takes input
         if char == ord('q'):
                 break
-        if char != ord('q'):
+        if char != ord('q') and char != -1:
                 win.addstr(5, 10, "".join([str(char), " character: ", chr(char)]))
         win.refresh()
 
