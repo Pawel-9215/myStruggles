@@ -17,4 +17,5 @@ while True:
                 win.addstr(5, 10, "".join([str(char), " character: ", chr(char)]))
         win.refresh()
 
-screen.endwin()
+c.endwin()
+
