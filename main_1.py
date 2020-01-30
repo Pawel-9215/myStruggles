@@ -1,6 +1,9 @@
 #here we go with the bloody snake
 
 import curses
+import random
+
+from random import randint
 from curses import wrapper
 from curses import KEY_DOWN, KEY_UP, KEY_LEFT, KEY_RIGHT
 
@@ -48,12 +51,13 @@ def main(screen):
 
                 #Draw snake head:
                 win.addch(snake[0][0], snake[0][1], "@")
-                #draw snake body:s
+                #draw snake body:
 
                 for seg in snake[1:]:
                         win.addch(seg[0], seg[1], "O")
 
-
+                #draw food
+                win.addch(food[0], food[1], "%")
 
                 win.addstr(0, 3, "".join([" key = ", str(key)]))
                 win.addstr(0, 16, "".join([" event = ", str(event), "  "]))
