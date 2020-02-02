@@ -1,9 +1,15 @@
 # learnig about classes in OOP
 
-class Antagonist:
-    __name = ""
-    __color = ""
-    __hitpoints = 0
+class Bird:
+    def about():
+        print("Species: Bird")
+    def Dance(self):
+        print("Not all birds dance but some do")
 
-    def __init__(self, name, color, hitpoints):
-        self.__s
+class peaCock(Bird):
+    def Dance(self):
+        print("Peacock can dance")
+
+class Sparrow(Bird):
+    def Dance(self):
+        print("Sparrow can't dance")
