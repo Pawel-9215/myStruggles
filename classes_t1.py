@@ -13,3 +13,8 @@ class peaCock(Bird):
 class Sparrow(Bird):
     def Dance(self):
         print("Sparrow can't dance")
+
+
+first_bird = peaCock()
+first_bird.Dance()
+
