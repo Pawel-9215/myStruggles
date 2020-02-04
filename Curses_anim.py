@@ -16,8 +16,8 @@ if __name__ == "__main__":
         num_rows, num_cols = screen.getmaxyx()
         min_x = 1
         min_y = 1
-        max_x = num_cols-1
-        max_y = num_rows-1
+        max_x = num_cols-2
+        max_y = num_rows-2
         screen.keypad(1)
         curses.noecho()
         curses.curs_set(0)
@@ -27,11 +27,8 @@ if __name__ == "__main__":
         #classes
 
 
-        class Ticker:
-            def tick():
 
-
-        class Leaf(Ticker):
+        class Leaf():
 
             y_position = 0
             x_position = 0
@@ -40,11 +37,28 @@ if __name__ == "__main__":
                 self.x_position = x
                 self.y_position = y
 
-            def set_position(self, x, y):
-                self.x_position = x
-                self.y_position = y
+            def set_new_position(self):
 
-        screen.getch()
+                if self.y_position + 1 < max_y:
+                    self.y_position += 1
+                
+
+            def renderself(self):
+                screen.addstr(self.y_position, self.x_position, "#")
+
+            def tick(self):
+                self.set_new_position()
+                self.renderself()
+
+
+        obj1 = Leaf(2, 4)
+        obj2 = Leaf(6, 3)
+        
+        while True:
+            
+            curses.napms(100)
+            screen.refresh()
+            
 
 
 
