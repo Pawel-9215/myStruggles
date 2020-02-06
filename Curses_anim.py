@@ -3,7 +3,7 @@ import random
 from curses import wrapper
 from random import randint
 
-
+all_leafs = []
 
 
 if __name__ == "__main__":
@@ -32,10 +32,13 @@ if __name__ == "__main__":
 
             y_position = 0
             x_position = 0
+            global all_leafs
 
             def __init__(self, x, y):
                 self.x_position = x
                 self.y_position = y
+                all_leafs.append(self)
+
 
             def set_new_position(self):
 
@@ -53,13 +56,27 @@ if __name__ == "__main__":
 
         obj1 = Leaf(2, 4)
         obj2 = Leaf(6, 3)
+        tiktak = 1
         
         while True:
             
-            curses.napms(100)
+            curses.napms(80)
             screen.refresh()
+
+            for obj in all_leafs:
+                obj.tick()
+
+            tiktak += 1
+            screen.addstr(0, 40, str(tiktak))
+            if tiktak >= 50:
+                break
+
             
 
 
 
     wrapper(main)
+
+    print("bye")
+    print(all_leafs)
+    input("")
