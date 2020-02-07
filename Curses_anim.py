@@ -47,7 +47,7 @@ if __name__ == "__main__":
                 
 
             def renderself(self):
-                screen.addstr(self.y_position, self.x_position, "#")
+                screen.addstr(self.y_position, self.x_position, "O")
 
             def tick(self):
                 self.set_new_position()
