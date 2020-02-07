@@ -59,9 +59,12 @@ if __name__ == "__main__":
         tiktak = 1
         
         while True:
-            
-            curses.napms(80)
+
             screen.refresh()
+            curses.napms(80)
+            screen.clear()
+
+            Leaf(2+tiktak, 2)
 
             for obj in all_leafs:
                 obj.tick()
@@ -78,5 +81,5 @@ if __name__ == "__main__":
     wrapper(main)
 
     print("bye")
-    print(all_leafs)
+    #print(all_leafs)
     input("")
