@@ -1,44 +1,44 @@
-# you can write to stdout for debugging purposes, e.g.
-# print("this is a debug message")
+# serching for prime
 
-A = [1, 3, 6, 6, 4, 1, 2, 1, 1, 1, 4, 4, 4, 4, 4, 4, 5, -3, 7, 8, 8]
+inp1 = "3 4000"
 
-def solution(A):
-    
-    positives = [item for item in A if item > 0]
-    search = 1
-    counter = 0
-    s = True
+def is_prime_easy(num):
 
-    if len(positives) == 0:
-        return 1
-    
-    positives.sort()
-    maxlen = len(positives)-1
-
-    while s == True:
- 
-        if positives[counter] == search:
-            counter = check_next(positives, counter, search, maxlen)
-            search += 1
-            if counter > maxlen:
-                return search
-        else:
-            return search
-
-            
-    
-def check_next(positives, counter, search, maxlen):
-
-    if counter > maxlen:
-        return counter
+    if num == 1:
+        return False
+    if num == 3:
+        return True
+    elif num < 3:
+        return False
+    elif num % 2 == 0 or num % 2 == 0 or num % 5 == 0:
+        return False
+    elif num % 3 == 0:
+        return False
+    elif num % 5 == 0:
+        return False
     else:
-        while positives[counter] == search:
-            counter += 1
-            if counter > maxlen:
-                return counter
+        return True
 
-        return counter
+def is_prime_hard(num):
 
-print("solution:")
-print(solution(A))
+    for i in range(2, num):
+        if num % i == 0:
+            return False
+
+    return True
+
+
+borders = []
+
+for num in inp1.split():
+    borders.append(int(num))
+
+print(borders)
+print(type(borders))
+
+for i in range(borders[0], borders[1]+1):
+    if is_prime_easy(i) == False:
+        pass
+    else:
+        if is_prime_hard(i) == True:
+            print(i)
