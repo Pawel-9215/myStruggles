@@ -8,8 +8,8 @@ def is_prime_easy(num):
         return False
     if num == 3:
         return True
-    elif num < 3:
-        return False
+    elif num == 2 or num == 5:
+        return Trues
     elif num % 2 == 0 or num % 2 == 0 or num % 5 == 0:
         return False
     elif num % 3 == 0:
@@ -29,6 +29,7 @@ def is_prime_hard(num):
 
 
 borders = []
+found_primes = []
 
 for num in inp1.split():
     borders.append(int(num))
@@ -41,4 +42,6 @@ for i in range(borders[0], borders[1]+1):
         pass
     else:
         if is_prime_hard(i) == True:
-            print(i)
+            found_primes.append(i)
+
+print(found_primes)
