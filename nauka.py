@@ -29,19 +29,19 @@ def is_prime_hard(num):
 
 
 borders = []
-found_primes = []
 
-for num in inp1.split():
-    borders.append(int(num))
+def main(repeats, inp1)
+    for num in inp1.split():
+        borders.append(int(num))
 
-print(borders)
-print(type(borders))
+    print(borders)
+    print(type(borders))
 
-for i in range(borders[0], borders[1]+1):
-    if is_prime_easy(i) == False:
-        pass
-    else:
-        if is_prime_hard(i) == True:
-            found_primes.append(i)
+    for i in range(borders[0], borders[1]+1):
+        if is_prime_easy(i) == False:
+            pass
+        else:
+            if is_prime_hard(i) == True:
+                print(i)
 
-print(found_primes)
+
