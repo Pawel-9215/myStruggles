@@ -1,5 +1,5 @@
 # serching for prime
-#testing 123 456
+#testing 123 456 qq
 #inp1 = "3 4000"
 import math
 
