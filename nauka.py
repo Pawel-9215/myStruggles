@@ -43,8 +43,36 @@ def main(inp1):
 
     #print(borders)
     #print(type(borders))
+    first_known_prime = 2
+    last_known_prime = 3
+
+
+    if borders[0] >= known_primes[0] and borders[0] <= known_primes[-1]:
+        for prime in known_primes:
+            if prime >= borders[0]:
+                first_known_prime = known_primes.index(prime)
+                break
+
+        while known_primes[first_known_prime] <= borders[1] and first_known_prime <= (len(known_primes)-1):
+            inp_list.append(known_primes[first_known_prime])
+            first_known_prime += 1
+
+    elif borders[1] >= known_primes[0] and borders[1] <= known_primes[-1]:
+        for i in range(len(known_primes), 0, -1):
+            if known_primes[i] >= borders[1]:
+                last_known_prime = i
+                break
+        
+        while known_primes[last_known_prime] >= borders[0] and last_known_prime >= 0:
+            inp_list.append(known_primes[last_known_prime])
+            first_known_prime -= 1
     
 
+
+    print(s.join(inp_list))
+    print("")
+
+"""
     for i in range(borders[0], borders[1]+1):
         if i in known_primes:
             inp_list.append(str(i))
@@ -54,9 +82,8 @@ def main(inp1):
             if is_prime_hard(i) == True:
                 inp_list.append(str(i))
                 known_primes.append(i)
-                
-    print(s.join(inp_list))
-    print("")
+"""                
+    
 
 
 
