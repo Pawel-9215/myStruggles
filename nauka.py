@@ -53,8 +53,8 @@ def main(inp1):
                 first_known_prime = known_primes.index(prime)
                 break
 
-        while known_primes[first_known_prime] <= borders[1] and first_known_prime <= (len(known_primes)-1):
-            inp_list.append(known_primes[first_known_prime])
+        while known_primes[first_known_prime] <= borders[1] and first_known_prime < (len(known_primes)-1):
+            inp_list.append(str(known_primes[first_known_prime]))
             first_known_prime += 1
 
     elif borders[1] >= known_primes[0] and borders[1] <= known_primes[-1]:
@@ -63,8 +63,8 @@ def main(inp1):
                 last_known_prime = i
                 break
         
-        while known_primes[last_known_prime] >= borders[0] and last_known_prime >= 0:
-            inp_list.append(known_primes[last_known_prime])
+        while known_primes[last_known_prime] >= borders[0] and last_known_prime > 0:
+            inp_list.append(str(known_primes[last_known_prime]))
             first_known_prime -= 1
     
 
