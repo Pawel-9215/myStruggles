@@ -2,16 +2,15 @@
 #testing 123 456a ee
 #inp1 = "3 4000"
 import math
-
+import random
+from random import randint
 
 
 known_primes = []
 
 
-
 s = """
 """
-
 
 def is_prime_hard(num):
   
@@ -45,82 +44,30 @@ for i in range(0, 20):
 def main(inp1):
     borders = []
     inp_list = []
-    global known_primes
-    new_known_primes = []
-    
+
+    table_of_primes = []
+
     for num in inp1.split():
         borders.append(int(num))
 
-    #print(borders)
-    #print(type(borders))
-    prime_suspect = borders[0]
-    known_primes_included = False
+    for i in range(borders[1]+1):
+        table_of_primes.append(True)
+    #print("table after spawning ", table_of_primes)
 
+    prime_suspect = 2
 
-    while prime_suspect < known_primes[0]:
-        if is_prime_hard(prime_suspect) == True:
-            inp_list.append(str(prime_suspect))
-            new_known_primes.append(prime_suspect)
-        if prime_suspect < borders[1]:
-            prime_suspect += 1
-        else:
-            known_primes = known_primes+new_known_primes
-            return inp_list
+    while(prime_suspect**2 <= borders[1]):
+        if (table_of_primes[prime_suspect]==True):
+            for i in range(prime_suspect**2, borders[1]+1, prime_suspect):
+                table_of_primes[i] = False
+        prime_suspect += 1
 
-    if borders[0] >= known_primes[0] >= borders[1] or borders[0] <= known_primes[-1] <= borders[1]:
-        known_primes_included = True
-    else:
-        known_primes_included = False
-    
-    if known_primes_included == True:
-        iteration = 0
-        while known_primes[iteration] < borders[0]:
-            iteration += 1
+    for p in range(borders[0], borders[1]):
+        if table_of_primes[p]:
+            inp_list.append(str(p))
 
-        while known_primes[iteration] < borders[1]:
-            inp_list.append(str(known_primes[iteration]))
-            if iteration < len(known_primes)-1:
-                iteration += 1
-                prime_suspect = known_primes[iteration]
-            else:
-                #inp_list.append(str(known_primes[-1]))
-                prime_suspect = known_primes[-1] + 1
-                break
-
-    while prime_suspect <= borders[1]:
-        if is_prime_hard(prime_suspect) == True:
-            inp_list.append(str(prime_suspect))
-            new_known_primes.append(prime_suspect)
-        if prime_suspect < borders[1]:
-            prime_suspect += 1
-        else:
-            known_primes = known_primes+new_known_primes
-            return inp_list
-
-    known_primes = known_primes+new_known_primes
+    #print("table after loop ", table_of_primes)
     return inp_list
-
-
-    
-
-
-    #print(s.join(inp_list))
-    #print("")
-
-"""
-    for i in range(borders[0], borders[1]+1):
-        if i in known_primes:
-            inp_list.append(str(i))
-        elif is_prime_easy(i) == False:
-            pass
-        else:
-            if is_prime_hard(i) == True:
-                inp_list.append(str(i))
-                known_primes.append(i)
-"""                
-    
-
-
 
 list_inp1 = []
 how_many = int(input("How many ranges will you give me?: "))

@@ -31,7 +31,7 @@ for i in range(0, 20):
 
 
 
+dupa = 2
 
-
-print(known_primes)
+print(dupa**2)
 
