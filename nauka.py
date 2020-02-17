@@ -2,6 +2,7 @@
 #testing 123 456a ee
 #inp1 = "3 4000"
 import math
+from math import floor, sqrt
 import random
 from random import randint
 
@@ -12,39 +13,12 @@ known_primes = []
 s = """
 """
 
-def is_prime_hard(num):
-  
-   # Corner cases 
-    if (num <= 1) : 
-        return False
-    if (num <= 3) : 
-        return True
-   
-      # This is checked so that we can skip  
-      # middle five numbers in below loop 
-    if (num % 2 == 0 or num % 3 == 0) : 
-        return False
-   
-    i = 5
-    while(i * i <= num) : 
-        if (num % i == 0 or num % (i + 2) == 0) : 
-            return False
-        i = i + 6
-   
-    return True
-
-
-
-for i in range(0, 20):
-   if is_prime_hard(i) == True:
-      known_primes.append(i)
-
 
 
 def main(inp1):
     borders = []
     inp_list = []
-
+    global known_primes 
     table_of_primes = []
 
     for num in inp1.split():
@@ -52,19 +26,23 @@ def main(inp1):
 
     for i in range(borders[1]+1):
         table_of_primes.append(True)
-    #print("table after spawning ", table_of_primes)
+    limit = floor(sqrt(borders[1])) + 1
 
+    
+    
     prime_suspect = 2
 
-    while(prime_suspect**2 <= borders[1]):
+    while(prime_suspect**2 <= limit):
         if (table_of_primes[prime_suspect]==True):
-            for i in range(prime_suspect**2, borders[1]+1, prime_suspect):
+            for i in range(prime_suspect**2, limit+1, prime_suspect):
                 table_of_primes[i] = False
         prime_suspect += 1
 
-    for p in range(borders[0], borders[1]):
+    for p in range(borders[0], limit):
         if table_of_primes[p]:
             inp_list.append(str(p))
+            known_primes.append(p)
+    print(known_primes)
 
     #print("table after loop ", table_of_primes)
     return inp_list
