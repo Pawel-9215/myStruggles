@@ -29,21 +29,26 @@ if __name__ == "__main__":
 
 
         class Leaf():
-
+            randomdir = randint(-1, 1)
             y_position = 0
             x_position = 0
             global all_leafs
 
-            def __init__(self, x, y):
+            def __init__(self, y, x):
                 self.x_position = x
                 self.y_position = y
                 all_leafs.append(self)
 
 
             def set_new_position(self):
-
-                if self.y_position + 1 < max_y:
+                
+                if find_collision(self.y_position + 1, self.x_position) == False:
                     self.y_position += 1
+                elif find_collision(self.y_position, self.x_position + self.randomdir) == False:
+                    self.x_position += self.randomdir
+                else:
+                    self.randomdir = -self.randomdir
+                
                 
 
             def renderself(self):
@@ -53,25 +58,40 @@ if __name__ == "__main__":
                 self.set_new_position()
                 self.renderself()
 
+        def find_collision(y_pos, x_pos):
+            for ob in all_leafs:
+                if ob.y_position == y_pos and ob.x_position == x_pos:
+                    return True
+            if y_pos >= max_y or y_pos <= min_y:
+                return True
+            if x_pos >= max_x or x_pos <= min_x:
+                return True
+            return False
 
-        obj1 = Leaf(2, 4)
-        obj2 = Leaf(6, 3)
+
+        obj1 = Leaf(2, 6)
+        obj2 = Leaf(7, 3)
+        obj3 = Leaf(2, 3)
+        obj4 = Leaf(3, 18)
+        obj5 = Leaf(1, 28)
         tiktak = 1
         
         while True:
 
             screen.refresh()
-            curses.napms(80)
-            screen.clear()
+            curses.napms(50)
+            screen.erase()
 
-            Leaf(2+tiktak, 2)
+
+            #Leaf(2+tiktak, 2)
 
             for obj in all_leafs:
                 obj.tick()
 
             tiktak += 1
             screen.addstr(0, 40, str(tiktak))
-            if tiktak >= 50:
+            screen.addstr(0, 10, str(all_leafs[0].y_position))
+            if tiktak >= 200:
                 break
 
             
@@ -82,4 +102,4 @@ if __name__ == "__main__":
 
     print("bye")
     #print(all_leafs)
-    input("")
+    #input("")
