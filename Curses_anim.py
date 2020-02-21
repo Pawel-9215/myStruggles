@@ -47,8 +47,8 @@ if __name__ == "__main__":
                 
                 if find_collision(self.y_position + 1, self.x_position) == False:
                     self.y_position += 1
-                    if self.velocity < 70:
-                        self.velocity += int((60-self.velocity)/3)
+                    if self.velocity < 20:
+                        self.velocity += int(12 / (self.velocity+1)), 1
                 elif find_collision(self.y_position, self.x_position + self.randomdir) == False and self.velocity > 0 :
                     self.x_position += self.randomdir
                     self.velocity -= 1
@@ -62,7 +62,7 @@ if __name__ == "__main__":
 
             def tick(self):
                 self.speed_counter += 1
-                if self.speed_counter + self.velocity >= 70:
+                if self.speed_counter + self.velocity >= 20:
                 
                     self.set_new_position()
                     
@@ -91,7 +91,7 @@ if __name__ == "__main__":
             
             
             screen.refresh()
-            curses.napms(1)
+            curses.napms(5)
             screen.erase()
 
 
@@ -104,7 +104,7 @@ if __name__ == "__main__":
             screen.border(0)
             screen.addstr(0, 40, str(tiktak))
             screen.addstr(0, 10, str(all_leafs[0].velocity))
-            if tiktak >= 20000:
+            if tiktak >= 3000:
                 break
 
             
