@@ -29,9 +29,12 @@ if __name__ == "__main__":
 
 
         class Leaf():
-            randomdir = randint(-1, 1)
+            dire = [-1, 1]
+            randomdir = dire[randint(0, 1)]
             y_position = 0
             x_position = 0
+            velocity = 1
+            speed_counter = 0
             global all_leafs
 
             def __init__(self, y, x):
@@ -44,8 +47,11 @@ if __name__ == "__main__":
                 
                 if find_collision(self.y_position + 1, self.x_position) == False:
                     self.y_position += 1
-                elif find_collision(self.y_position, self.x_position + self.randomdir) == False:
+                    if self.velocity < 70:
+                        self.velocity += int((60-self.velocity)/3)
+                elif find_collision(self.y_position, self.x_position + self.randomdir) == False and self.velocity > 0 :
                     self.x_position += self.randomdir
+                    self.velocity -= 1
                 else:
                     self.randomdir = -self.randomdir
                 
@@ -55,7 +61,12 @@ if __name__ == "__main__":
                 screen.addstr(self.y_position, self.x_position, "O")
 
             def tick(self):
-                self.set_new_position()
+                self.speed_counter += 1
+                if self.speed_counter + self.velocity >= 70:
+                
+                    self.set_new_position()
+                    
+                    self.speed_counter = 0
                 self.renderself()
 
         def find_collision(y_pos, x_pos):
@@ -77,9 +88,10 @@ if __name__ == "__main__":
         tiktak = 1
         
         while True:
-
+            
+            
             screen.refresh()
-            curses.napms(50)
+            curses.napms(1)
             screen.erase()
 
 
@@ -89,9 +101,10 @@ if __name__ == "__main__":
                 obj.tick()
 
             tiktak += 1
+            screen.border(0)
             screen.addstr(0, 40, str(tiktak))
-            screen.addstr(0, 10, str(all_leafs[0].y_position))
-            if tiktak >= 200:
+            screen.addstr(0, 10, str(all_leafs[0].velocity))
+            if tiktak >= 20000:
                 break
 
             
