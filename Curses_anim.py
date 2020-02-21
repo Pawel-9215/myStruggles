@@ -48,12 +48,13 @@ if __name__ == "__main__":
                 if find_collision(self.y_position + 1, self.x_position) == False:
                     self.y_position += 1
                     if self.velocity < 20:
-                        self.velocity += int(12 / (self.velocity+1)), 1
+                        self.velocity += int(10 / (self.velocity+1))
                 elif find_collision(self.y_position, self.x_position + self.randomdir) == False and self.velocity > 0 :
                     self.x_position += self.randomdir
                     self.velocity -= 1
                 else:
                     self.randomdir = -self.randomdir
+                    self.velocity -= 1
                 
                 
 
@@ -93,7 +94,8 @@ if __name__ == "__main__":
             screen.refresh()
             curses.napms(5)
             screen.erase()
-
+            if tiktak <= 400:
+                Leaf(1, randint(min_x, max_x))
 
             #Leaf(2+tiktak, 2)
 
