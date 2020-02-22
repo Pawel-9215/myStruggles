@@ -50,7 +50,12 @@ if __name__ == "__main__":
                 if find_collision(self.y_position + 1, self.x_position) == False:
                     self.y_position += 1
                     if self.velocity < 20:
-                        self.velocity += sqrt(self.velocity+1)/2
+                        self.velocity += 1+2/(self.velocity+0.1)
+                elif find_collision(self.y_position + 1, self.x_position + self.randomdir) == False:
+                    self.x_position += self.randomdir
+                    self.y_position += 1
+                    if self.velocity < 20:
+                        self.velocity += 1+2/(self.velocity+0.1)
                 elif find_collision(self.y_position, self.x_position + self.randomdir) == False and self.velocity > 0 :
                     self.x_position += self.randomdir
                     if self.velocity > 0:
@@ -67,7 +72,7 @@ if __name__ == "__main__":
 
             def tick(self):
                 self.speed_counter += 1
-                if self.speed_counter + self.velocity >= 20:
+                if self.speed_counter + self.velocity >= 30:
                 
                     self.set_new_position()
                     
