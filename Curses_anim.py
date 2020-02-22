@@ -1,3 +1,5 @@
+import math
+from math import sqrt
 import curses
 import random
 from curses import wrapper
@@ -48,13 +50,15 @@ if __name__ == "__main__":
                 if find_collision(self.y_position + 1, self.x_position) == False:
                     self.y_position += 1
                     if self.velocity < 20:
-                        self.velocity += int(10 / (self.velocity+1))
+                        self.velocity += sqrt(self.velocity+1)/2
                 elif find_collision(self.y_position, self.x_position + self.randomdir) == False and self.velocity > 0 :
                     self.x_position += self.randomdir
-                    self.velocity -= 1
+                    if self.velocity > 0:
+                        self.velocity -= 1
                 else:
                     self.randomdir = -self.randomdir
-                    self.velocity -= 1
+                    if self.velocity > 0:
+                        self.velocity -= 1
                 
                 
 
@@ -81,11 +85,6 @@ if __name__ == "__main__":
             return False
 
 
-        obj1 = Leaf(2, 6)
-        obj2 = Leaf(7, 3)
-        obj3 = Leaf(2, 3)
-        obj4 = Leaf(3, 18)
-        obj5 = Leaf(1, 28)
         tiktak = 1
         
         while True:
@@ -95,7 +94,7 @@ if __name__ == "__main__":
             curses.napms(5)
             screen.erase()
             if tiktak <= 400:
-                Leaf(1, randint(min_x, max_x))
+                Leaf(1, randint(int(min_x+max_x/4), int(max_x/2)))
 
             #Leaf(2+tiktak, 2)
 
