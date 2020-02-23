@@ -5,6 +5,11 @@ import random
 from curses import wrapper
 from random import randint
 
+UP_KEY = 119
+DOWN_KEY = 115
+LEFT_KEY = 97
+RIGHT_KEY = 100
+
 all_leafs = []
 
 
@@ -24,11 +29,35 @@ if __name__ == "__main__":
         curses.noecho()
         curses.curs_set(0)
         screen.border(0)
+        screen.timeout(0)
         screen.addstr(0, 2, "".join(["Screen size: ", str(num_rows), " x ", str(num_cols)]))
 
         #classes
 
+        class Spawner():
+            x_position = min_x + 2
+            y_position = min_y + 2
 
+            def __init__(self, y, x):
+                self.x_position = x
+                self.y_position = y
+
+            def self_render(self):
+                screen.addstr(self.y_position, self.x_position-1, "[ ]")
+
+            def move(self, key):
+                if key == UP_KEY:
+                    self.y_position -= 1
+                if key == DOWN_KEY:
+                    self.y_position += 1
+                if key == LEFT_KEY:
+                    self.x_position -= 1
+                if key == RIGHT_KEY:
+                    self.x_position += 1
+                
+
+            def spawn(self):
+                Leaf(self.y_position, self.x_position)
 
         class Leaf():
             dire = [-1, 1]
@@ -91,27 +120,43 @@ if __name__ == "__main__":
 
 
         tiktak = 1
-        
+        spaw = Spawner(min_y+2, min_x+2)
         while True:
             
             
             screen.refresh()
             curses.napms(5)
+
+            event = screen.getch()
+            if event == 27 or event == 113: #quit
+                break
+
+            if event in [UP_KEY, DOWN_KEY, LEFT_KEY, RIGHT_KEY]:
+                spaw.move(event)
+
+            if event == 32: #spacja
+                spaw.spawn() 
+
             screen.erase()
-            if tiktak <= 400:
+            if tiktak <= 200:
                 Leaf(1, randint(int(min_x+max_x/4), int(max_x/2)))
 
             #Leaf(2+tiktak, 2)
 
+           
+
+
+
             for obj in all_leafs:
                 obj.tick()
+            spaw.self_render()
 
             tiktak += 1
             screen.border(0)
-            screen.addstr(0, 40, str(tiktak))
+            #screen.addstr(0, 40, str(tiktak))
+            screen.addstr(0, 30, str(event))
             screen.addstr(0, 10, str(all_leafs[0].velocity))
-            if tiktak >= 3000:
-                break
+            
 
             
 
