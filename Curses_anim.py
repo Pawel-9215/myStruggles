@@ -47,13 +47,25 @@ if __name__ == "__main__":
 
             def move(self, key):
                 if key == UP_KEY:
-                    self.y_position -= 1
+                    if self.y_position - 1 < min_y:
+                        self.y_position = max_y
+                    else:
+                        self.y_position -= 1
                 if key == DOWN_KEY:
-                    self.y_position += 1
+                    if self.y_position + 1 > max_y:
+                        self.y_position = min_y
+                    else:
+                        self.y_position += 1
                 if key == LEFT_KEY:
-                    self.x_position -= 1
+                    if self.x_position - 1 < min_x:
+                        self.x_position = max_x
+                    else:
+                        self.x_position -= 1
                 if key == RIGHT_KEY:
-                    self.x_position += 1
+                    if self.x_position + 1 > max_x:
+                        self.x_position = min_x
+                    else:
+                        self.x_position += 1
                 
 
             def spawn(self):
@@ -156,6 +168,7 @@ if __name__ == "__main__":
             #screen.addstr(0, 40, str(tiktak))
             screen.addstr(0, 30, str(event))
             screen.addstr(0, 10, str(all_leafs[0].velocity))
+            screen.addstr(max_y+1, 5, "WSAD to move spawner, SPACEBAR to spawn new particles, Q to quit", curses.A_STANDOUT)
             
 
             
