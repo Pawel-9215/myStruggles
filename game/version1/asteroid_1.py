@@ -83,6 +83,7 @@ def update(dt):
          to_remove.dead = False
          player_icons = load.player_lives(lives, batch=main_batch)
          return
+         #test
       to_remove.delete()
       game_objects.remove(to_remove)
 
