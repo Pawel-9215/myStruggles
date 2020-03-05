@@ -5,17 +5,18 @@ import math
 import resources
 import physicalobject
 import util
+import asteroid
 
 def asteroids(num_asteroids, player_position, batch=None):
    asteroids = []
-   asteroid_types = [resources.asteroid_big_image, resources.asteroid_small_image]
+   #asteroid_types = [resources.asteroid_big_image, resources.asteroid_small_image]
    for i in range(num_asteroids):
       asteroid_x, asteroid_y = player_position
       while util.distance((asteroid_x, asteroid_y), player_position) < 100:
          asteroid_x = randint(0,800)
          asteroid_y = randint(0,800)
-      asteroid_size = randint(0,1)
-      new_asteroid = physicalobject.PhysicalObject(img=asteroid_types[asteroid_size], x = asteroid_x, y = asteroid_y, batch=batch)
+      #asteroid_size = randint(0,1)
+      new_asteroid = asteroid.Asteroid(x = asteroid_x, y = asteroid_y, batch=batch)
       new_asteroid.rotation = randint(0,360)
       new_asteroid.velocity_x = random.random()*40
       new_asteroid.velocity_y = random.random()*40
