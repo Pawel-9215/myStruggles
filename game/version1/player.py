@@ -18,6 +18,7 @@ class Player(physicalobject.PhysicalObject):
       self.engine_sprite.visible = False
       self.bullet_speed = 700.0
       self.reacts_to_bullets = False
+      self.is_player = True
    def delete(self):
       self.engine_sprite.delete()
       super(Player, self).delete()

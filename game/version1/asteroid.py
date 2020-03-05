@@ -13,8 +13,9 @@ class Asteroid(physicalobject.PhysicalObject):
       if self.dead and self.scale > 0.25:
          num_asteroids = random.randint(2, 3)
          for i in range(num_asteroids):
+            #print("adding asteroid")
             new_asteroid = Asteroid(x = self.x, y = self.y, batch=self.batch)
-            new_asteroid.rodation = random.randint(0, 360)
+            new_asteroid.rotation = random.randint(0, 360)
             new_asteroid.velocity_x = (random.random() * 70 + self.velocity_x)
             new_asteroid.velocity_y = (random.random() * 70 + self.velocity_y)
             new_asteroid.scale = self.scale * 0.5
