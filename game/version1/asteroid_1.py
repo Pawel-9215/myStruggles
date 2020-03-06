@@ -28,7 +28,7 @@ level_label = pyglet.text.Label(text="Meteor Game", x=game_window.width//2, y=ga
 player_ship = player.Player(x=400, y=400, batch=main_batch)
 background = pyglet.sprite.Sprite(img=resources.background_image, x=0, y=0)
 
-asteroids = load.asteroids(4, player_ship.position, main_batch)
+asteroids = load.asteroids(5, player_ship.position, main_batch)
 
 game_objects = asteroids + [player_ship]
 

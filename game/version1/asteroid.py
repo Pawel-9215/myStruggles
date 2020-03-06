@@ -11,7 +11,7 @@ class Asteroid(physicalobject.PhysicalObject):
    def handle_collision_with(self, other_object):
       super(Asteroid, self).handle_collision_with(other_object)
       if self.dead and self.scale > 0.25:
-         num_asteroids = random.randint(2, 3)
+         num_asteroids = random.randint(2, 4)
          for i in range(num_asteroids):
             #print("adding asteroid")
             new_asteroid = Asteroid(x = self.x, y = self.y, batch=self.batch)
