@@ -7,7 +7,8 @@ pyglet.resource.reindex()
 import resources, load
 import physicalobject
 import player
-
+import fx
+pyglet.options['audio'] = ('openal', 'pulse', 'directsound', 'silent')
 game_window = pyglet.window.Window(800, 800, caption = "Meteora v0.01")
 
 main_batch = pyglet.graphics.Batch()
@@ -31,6 +32,7 @@ background = pyglet.sprite.Sprite(img=resources.background_image, x=0, y=0)
 asteroids = load.asteroids(5, player_ship.position, main_batch)
 
 game_objects = asteroids + [player_ship]
+game_fx = []
 
 
 
@@ -41,12 +43,15 @@ def on_draw():
    background.draw()
    
    main_batch.draw()
+   for fx in game_fx:
+      fx.draw()
 
 
 
 def update(dt):
    
    to_add = []
+   to_add_fx = []
    global score
    global lives
    global player_icons
@@ -63,9 +68,15 @@ def update(dt):
    for obj in game_objects:
       obj.update(dt)
       to_add.extend(obj.new_objects)
+      to_add_fx.extend(obj.new_fx)
       obj.new_objects = []
+      obj.new_fx = []
 
    game_objects.extend(to_add)
+   game_fx.extend(to_add_fx)
+
+   for fx in game_fx:
+      fx.update(dt)
 
    for to_remove in [obj for obj in game_objects if obj.dead]:
          
@@ -86,6 +97,10 @@ def update(dt):
          #test
       to_remove.delete()
       game_objects.remove(to_remove)
+
+   for to_remove in [obj for obj in game_fx if obj.dead]:
+      to_remove.delete()
+      game_fx.remove(to_remove)
 
    
 

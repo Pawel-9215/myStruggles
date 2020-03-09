@@ -7,6 +7,7 @@ class PhysicalObject(pyglet.sprite.Sprite):
       self.dead = False
       self.velocity_x, self.velocity_y, = 0.0, 0.0
       self.new_objects = []
+      self.new_fx = []
       self.reacts_to_bullets = True
       self.is_bullet = False
       self.is_player = False

@@ -11,6 +11,11 @@ asteroid_small_image = pyglet.resource.image("small_meteor.png")
 background_image = pyglet.resource.image("background.png")
 engine_flame = pyglet.resource.image("engine_flame.png")
 
+engine_sound = pyglet.resource.media("engine.wav")
+
+shot_sound = pyglet.resource.media("shot_1.wav", streaming=False)
+expl_sound = pyglet.resource.media("expl_1.wav", streaming=False)
+
 def center_image(image):
    #set ancor point to center
    image.anchor_x = image.width // 2

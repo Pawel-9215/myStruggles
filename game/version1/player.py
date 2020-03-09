@@ -6,6 +6,8 @@ import bullet
 from pyglet.window import key
 
 
+
+
 class Player(physicalobject.PhysicalObject):
 
    def __init__(self, *args, **kwargs):
@@ -39,10 +41,15 @@ class Player(physicalobject.PhysicalObject):
       new_bullet.velocity_y = bullet_vy
       
       self.new_objects.append(new_bullet)
+      resources.shot_sound.play()
+     
+
    
    def on_key_press(self, symbol, mods):
       if symbol == key.SPACE:
          self.fire()
+
+   
 
    
 

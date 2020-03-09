@@ -1,6 +1,7 @@
 import pyglet
 import resources, physicalobject
 import random
+import fx
 
 class Asteroid(physicalobject.PhysicalObject):
    def __init__(self, *args, **kwargs):
@@ -10,6 +11,11 @@ class Asteroid(physicalobject.PhysicalObject):
 
    def handle_collision_with(self, other_object):
       super(Asteroid, self).handle_collision_with(other_object)
+      if self.dead:
+         resources.expl_sound.play()
+         explosion = fx.ParticleFX(self.x, self.y, count=int(50*self.scale))
+         self.new_fx.append(explosion)
+
       if self.dead and self.scale > 0.25:
          num_asteroids = random.randint(2, 4)
          for i in range(num_asteroids):
