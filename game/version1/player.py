@@ -10,6 +10,10 @@ from pyglet.window import key
 
 class Player(physicalobject.PhysicalObject):
 
+   engine_player = pyglet.media.Player()
+   engine_player.queue(resources.engine_sound)
+   engine_player.loop = True
+
    def __init__(self, *args, **kwargs):
       super().__init__(img=resources.player_image, *args, **kwargs)
       self.thrust = 300.0
@@ -62,6 +66,7 @@ class Player(physicalobject.PhysicalObject):
          self.rotation += self.rotation_speed*dt
 
       if self.key_handler[key.UP]:
+         self.engine_player.play()
          self.engine_sprite.visible = True
          angle_radians = -math.radians(self.rotation-90)
          force_x = math.cos(angle_radians) * self.thrust * dt
