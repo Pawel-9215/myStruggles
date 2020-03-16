@@ -1,6 +1,7 @@
 import pyglet
 import resources, physicalobject
 import random
+from random import randint
 import fx
 
 class Asteroid(physicalobject.PhysicalObject):
@@ -22,8 +23,8 @@ class Asteroid(physicalobject.PhysicalObject):
             #print("adding asteroid")
             new_asteroid = Asteroid(x = self.x, y = self.y, batch=self.batch)
             new_asteroid.rotation = random.randint(0, 360)
-            new_asteroid.velocity_x = (random.random() * 70 + self.velocity_x)
-            new_asteroid.velocity_y = (random.random() * 70 + self.velocity_y)
+            new_asteroid.velocity_x = (random.random()*randint(-1, 1) * 40 + self.velocity_x)
+            new_asteroid.velocity_y = (random.random()*randint(-1, 1) * 70 + self.velocity_y)
             new_asteroid.scale = self.scale * 0.5
             self.new_objects.append(new_asteroid)
 

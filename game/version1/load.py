@@ -18,8 +18,8 @@ def asteroids(num_asteroids, player_position, batch=None):
       #asteroid_size = randint(0,1)
       new_asteroid = asteroid.Asteroid(x = asteroid_x, y = asteroid_y, batch=batch)
       new_asteroid.rotation = randint(0,360)
-      new_asteroid.velocity_x = random.random()*40
-      new_asteroid.velocity_y = random.random()*40
+      new_asteroid.velocity_x = random.random()*40*randint(-1, 1)
+      new_asteroid.velocity_y = random.random()*40*randint(-1, 1)
       asteroids.append(new_asteroid)
    return asteroids
 

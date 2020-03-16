@@ -10,6 +10,7 @@ asteroid_big_image = pyglet.resource.image("big_meteor.png")
 asteroid_small_image = pyglet.resource.image("small_meteor.png")
 background_image = pyglet.resource.image("background.png")
 engine_flame = pyglet.resource.image("engine_flame.png")
+music_theme = pyglet.resource.media("muzyki.wav")
 
 engine_sound = pyglet.resource.media("engine.wav", streaming = False)
 

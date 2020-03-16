@@ -34,7 +34,11 @@ asteroids = load.asteroids(5, player_ship.position, main_batch)
 game_objects = asteroids + [player_ship]
 game_fx = []
 
+theme = pyglet.media.Player()
+theme.queue(resources.music_theme)
+theme.loop = True
 
+theme.play()
 
 @game_window.event
 def on_draw():
